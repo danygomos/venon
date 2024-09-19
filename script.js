@@ -1,77 +1,22 @@
-body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #000;
-    color: #fff;
-    text-align: center;
-}
+let angleX = -30;
+let angleY = 45;
 
-.title-container {
-    margin-bottom: 100px;
-}
+document.getElementById('rotateLeft').addEventListener('click', () => {
+    angleY -= 45; // Gira a la izquierda
+    document.getElementById('cube').style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+});
 
-.title-main {
-    font-size: 48px;
-    font-weight: bold;
-}
+document.getElementById('rotateRight').addEventListener('click', () => {
+    angleY += 45; // Gira a la derecha
+    document.getElementById('cube').style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+});
 
-.title-sub {
-    font-size: 24px;
-    font-weight: lighter;
-}
+document.getElementById('rotateUp').addEventListener('click', () => {
+    angleX -= 45; // Gira hacia arriba
+    document.getElementById('cube').style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+});
 
-.scene {
-    width: 200px;
-    height: 200px;
-    perspective: 1000px;
-}
-
-.cube {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    transform: rotateX(-30deg) rotateY(45deg);
-    transition: transform 1s;
-}
-
-.face {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    background: rgba(0, 0, 0, 0.8);
-    border: 2px solid white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-}
-
-.front  { transform: translateZ(100px); }
-.back   { transform: rotateY(180deg) translateZ(100px); }
-.left   { transform: rotateY(-90deg) translateZ(100px); }
-.right  { transform: rotateY(90deg) translateZ(100px); }
-.top    { transform: rotateX(90deg) translateZ(100px); }
-.bottom { transform: rotateX(-90deg) translateZ(100px); }
-
-.controls {
-    margin-top: 100px;
-}
-
-button {
-    font-size: 20px;
-    padding: 10px;
-    margin: 5px;
-    background-color: #fff;
-    color: #000;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #ddd;
-}
+document.getElementById('rotateDown').addEventListener('click', () => {
+    angleX += 45; // Gira hacia abajo
+    document.getElementById('cube').style.transform = `rotateX(${angleX}deg) rotateY(${angleY}deg)`;
+});
