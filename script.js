@@ -1,27 +1,77 @@
-let cube = document.getElementById('cube');
-let isDragging = false;
-let startX, startY;
-let currentX = -30;
-let currentY = -30;
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    text-align: center;
+}
 
-document.querySelector('.scene').addEventListener('mousedown', function(e) {
-    isDragging = true;
-    startX = e.clientX - currentX;
-    startY = e.clientY - currentY;
-});
+.title-container {
+    margin-bottom: 100px;
+}
 
-document.addEventListener('mousemove', function(e) {
-    if (isDragging) {
-        let deltaX = e.clientX - startX;
-        let deltaY = e.clientY - startY;
-        currentX = deltaX;
-        currentY = deltaY;
-        cube.style.transform = `rotateX(${-currentY}deg) rotateY(${currentX}deg)`;
-		
-    }
-	
-});
+.title-main {
+    font-size: 48px;
+    font-weight: bold;
+}
 
-document.addEventListener('mouseup', function() {
-    isDragging = false;
-});
+.title-sub {
+    font-size: 24px;
+    font-weight: lighter;
+}
+
+.scene {
+    width: 200px;
+    height: 200px;
+    perspective: 1000px;
+}
+
+.cube {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg) rotateY(45deg);
+    transition: transform 1s;
+}
+
+.face {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.front  { transform: translateZ(100px); }
+.back   { transform: rotateY(180deg) translateZ(100px); }
+.left   { transform: rotateY(-90deg) translateZ(100px); }
+.right  { transform: rotateY(90deg) translateZ(100px); }
+.top    { transform: rotateX(90deg) translateZ(100px); }
+.bottom { transform: rotateX(-90deg) translateZ(100px); }
+
+.controls {
+    margin-top: 100px;
+}
+
+button {
+    font-size: 20px;
+    padding: 10px;
+    margin: 5px;
+    background-color: #fff;
+    color: #000;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ddd;
+}
